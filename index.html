@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recipe App</title>
+  <link rel="stylesheet" href="./src/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body>
+  <div class="container">
+    <h1>Recipe App</h1>
+    
+    <div class="search-container">
+      <input type="text" id="search-bar" placeholder="Search for a dish...">
+    </div>
+    
+    <div class="filter-container">
+      <label for="filter-dropdown"></label>
+      <select id="filter-dropdown">
+        <option value="">All</option>
+        <option value="cuisine1">Cuisine 1</option>
+        <option value="cuisine2">Cuisine 2</option>
+      </select>
+    </div>
+    
+    <div id="results-section">
+    </div>
+    
+    <div id="favorites-section">
+      <h2>Favorites</h2>
+    </div>
+    
+    <div id="recipe-details" style="display:none;">
+    </div>
+  </div>
+  
+  <script src="main.js"></script>
+</body>
+</html>
