@@ -1,24 +1,38 @@
-import './css/style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
+import { recipes } from "./data/recipes.js";
+import { getRecipes } from "./components/recipeResults.js";
+import { renderRecipes } from "./components/recipeResults.js";
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
+const searchInput = document.getElementById("search-bar");
+const filterDropdown = document.getElementById("filter-dropdown");
+const recipeDetails = document.getElementById("recipe-details");
 
-setupCounter(document.querySelector('#counter'))
+// const { id, name, image, ingredients, instructions, cuisine, difficulty } = recipes
+
+renderRecipes(recipes, getRecipes);
+
+searchInput.addEventListener("keypress", function (e) {
+  if (e.key === "Enter") {
+    e.preventDefault();
+    searchRecipes();
+  }
+});
+
+function searchRecipes(recipes, searchTerm) {
+  const lowerSearchTerm = searchTerm.toLowerCase();
+
+  return recipes.filter((obj) => {
+    for (const key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        const value = obj[key];
+
+        if (
+          typeof value === "string" &&
+          value.toLowerCase().includes(lowerSearchTerm)
+        ) {
+          return true;
+        }
+      }
+    }
+    return false;
+  });
+}

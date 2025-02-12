@@ -4,22 +4,30 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Recipe App</title>
+  <!--  CSS -->
   <link rel="stylesheet" href="./src/css/style.css">
+  <!--  ICONS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
         integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+  <!--  GOOGLE FONTS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
   <div class="container">
     <h1>Recipe App</h1>
     
     <div class="search-container">
+      <label for="search-bar">Search Bar</label>
       <input type="text" id="search-bar" placeholder="Search for a dish...">
     </div>
     
     <div class="filter-container">
-      <label for="filter-dropdown"></label>
+      <label for="filter-dropdown">Filter Dropdown Menu</label>
       <select id="filter-dropdown">
         <option value="">All</option>
         <option value="cuisine1">Cuisine 1</option>
@@ -28,6 +36,7 @@
     </div>
     
     <div id="results-section">
+    <!-- Populate Search Results Here -->
     </div>
     
     <div id="favorites-section">
@@ -35,9 +44,10 @@
     </div>
     
     <div id="recipe-details" style="display:none;">
+    <!-- Recipes Populate Here -->
     </div>
   </div>
   
-  <script src="main.js"></script>
+  <script src="./src/main.js" type="module"></script>
 </body>
 </html>
