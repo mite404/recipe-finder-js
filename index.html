@@ -22,25 +22,29 @@
     <h1>Recipe App</h1>
     
     <div class="search-container">
-      <label for="search-bar">Search Bar</label>
-      <input type="text" id="search-bar" placeholder="Search for a dish...">
+      <form id="search-form">
+        <label for="search-bar"></label>
+        <input type="text" id="search-bar" placeholder="Search for a dish...">
+        <button type="submit" id="submit">Search</button>
+      </form>
     </div>
     
-    <div class="filter-container">
-      <label for="filter-dropdown">Filter Dropdown Menu</label>
-      <select id="filter-dropdown">
-        <option value="">All</option>
-        <option value="cuisine1">Cuisine 1</option>
-        <option value="cuisine2">Cuisine 2</option>
-      </select>
-    </div>
+<!--    <div class="filter-container">-->
+<!--      <label for="filter-dropdown"></label>-->
+<!--      <select id="filter-dropdown">-->
+<!--        <option value="">All</option>-->
+<!--        <option value="cuisine1">Cuisine 1</option>-->
+<!--        <option value="cuisine2">Cuisine 2</option>-->
+<!--      </select>-->
+<!--    </div>-->
     
-    <div id="results-section">
+    <div id="recipe-results">
     <!-- Populate Search Results Here -->
     </div>
     
-    <div id="favorites-section">
-      <h2>Favorites</h2>
+    <h2>Favorites</h2>
+    <div id="favorite-recipes">
+    <!-- Favorite Recipes Populate Here -->
     </div>
     
     <div id="recipe-details" style="display:none;">

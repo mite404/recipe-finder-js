@@ -1,4 +1,4 @@
-export const recipes = [
+export const recipesArray = [
   {
     id: 1,
     name: "Spaghetti Carbonara",
@@ -20,7 +20,9 @@ export const recipes = [
       "Season with black pepper. Serve immediately."
     ],
     cuisine: "Italian",
-    difficulty: "Medium"
+    difficulty: 2,
+    isFavorite: true,
+    isLiked: false
   },
   {
     id: 2,
@@ -37,10 +39,12 @@ export const recipes = [
       "Shred the cooked chicken.",
       "Mix shredded chicken with taco seasoning according to packet instructions.",
       "Warm tortillas.",
-      "Fill tortillas with chicken and your favorite toppings."
+      "Fill tortillas with chicken and your isFavorite toppings."
     ],
     cuisine: "Mexican",
-    difficulty: "Easy"
+    difficulty: 1,
+    isFavorite: true,
+    isLiked: false
   },
   {
     id: 3,
@@ -70,7 +74,9 @@ export const recipes = [
       "Serve over rice."
     ],
     cuisine: "Asian",
-    difficulty: "Medium"
+    difficulty: 2,
+    isFavorite: false,
+    isLiked: false
   },
   {
     id: 4,
@@ -98,7 +104,9 @@ export const recipes = [
       "Bake for 9-11 minutes, or until golden brown."
     ],
     cuisine: "American",
-    difficulty: "Easy"
+    difficulty: 1,
+    isFavorite: true,
+    isLiked: false
   },
   {
     id: 5,
@@ -127,6 +135,8 @@ export const recipes = [
       "Garnish with fresh parsley and serve immediately."
     ],
     cuisine: "Italian",
-    difficulty: "Medium"
+    difficulty: 2,
+    isFavorite: false,
+    isLiked: false
   }
 ];

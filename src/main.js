@@ -1,34 +1,51 @@
-import { recipes } from "./data/recipes.js";
-import { getRecipes } from "./components/recipeResults.js";
-import { renderRecipes } from "./components/recipeResults.js";
+import { recipesArray } from "./data/recipes.js";
+import { updateRecipeListDisplay } from "./components/recipeResults.js";
 
-const searchInput = document.getElementById("search-bar");
-const filterDropdown = document.getElementById("filter-dropdown");
+const searchForm = document.getElementById("search-form")
+const searchBar = document.getElementById("search-bar");
+const searchBtn = document.getElementById("submit");
+const recipeResultsDiv = document.getElementById("recipe-results");
+const favRecipesDiv = document.getElementById("favorite-recipes")
 const recipeDetails = document.getElementById("recipe-details");
 
-// const { id, name, image, ingredients, instructions, cuisine, difficulty } = recipes
+// const { id, name, image, ingredients, instructions, cuisine, difficulty, isFavorite } = recipes
 
-renderRecipes(recipes, getRecipes);
 
-searchInput.addEventListener("keypress", function (e) {
-  if (e.key === "Enter") {
-    e.preventDefault();
-    searchRecipes();
-  }
-});
+// Search Functionality
+searchForm.addEventListener("submit", function (e) {
+  e.preventDefault();
 
-function searchRecipes(recipes, searchTerm) {
-  const lowerSearchTerm = searchTerm.toLowerCase();
+  const searchTerm = searchBar.value.toLowerCase();
+  console.log("Search submitted with: ", searchTerm);
 
-  return recipes.filter((obj) => {
-    for (const key in obj) {
-      if (obj.hasOwnProperty(key)) {
-        const value = obj[key];
+  const filteredResults = searchRecipes(recipesArray, searchTerm);
 
-        if (
-          typeof value === "string" &&
-          value.toLowerCase().includes(lowerSearchTerm)
-        ) {
+  updateRecipeListDisplay(filteredResults, recipeResultsDiv);  // Update search results
+
+  searchBar.value = ""; // Clear 'searchBar' after 'searchBtn' is pressed
+
+  // Filter FAVORITES based on the CURRENT search term:
+  const filteredFavRecipes = filteredResults.filter(recipe => recipe.isFavorite);
+
+  updateRecipeListDisplay(filteredFavRecipes, favRecipesDiv);  // Init render of favs
+
+})
+
+
+function searchRecipes(recipesArray, searchTerm) {
+  // Search all recipe data in the array.
+
+  if (!searchTerm) return [];  // Return empty array if search term is empty
+
+  console.log('Searching: ', searchTerm);
+
+  return recipesArray.filter((recipeObject) => {
+    for (const key in recipeObject) {
+      if (recipeObject.hasOwnProperty(key) && typeof recipeObject[key] === "string") {
+        const value = recipeObject[key].toLowerCase();
+
+        if (value.includes(searchTerm)) {
+          console.log('Found: ', searchTerm, "in", key, ":", value);
           return true;
         }
       }
@@ -36,3 +53,25 @@ function searchRecipes(recipes, searchTerm) {
     return false;
   });
 }
+
+
+// Like button functionality
+document.addEventListener('click', function(e) {
+  if (e.target.dataset.like) {
+    handleLikeClick(e.target.dataset.like)
+  }
+});
+
+function handleLikeClick(recipeId) {
+  const targetRecipeObj = recipesArray.find(recipe => recipe.id === recipeId);
+
+  if (targetRecipeObj) {
+    targetRecipeObj.isLiked = !targetRecipeObj.isLiked
+    updateRecipeListDisplay(recipesArray, recipeResultsDiv);
+  }
+}
+
+const initialFavRecipes = recipesArray.filter(recipe => recipe.isFavorite);
+
+updateRecipeListDisplay(recipesArray, recipeResultsDiv);  // Init render
+updateRecipeListDisplay(initialFavRecipes, favRecipesDiv); // Init render of favs
